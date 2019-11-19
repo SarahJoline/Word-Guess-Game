@@ -42,9 +42,6 @@ var country = [
   "italy"
 ];
 
-var wins = 0;
-var losses = 0;
-
 restart();
 
 function restart() {
@@ -65,8 +62,6 @@ function restart() {
   console.log(wordToGuess);
 
   document.querySelector("#word").innerHTML = wordToGuess.join(" ");
-  document.querySelector("#wins").innerHTML = wins;
-  document.querySelector("#losses").innerHTML = losses;
 
   document.onkeyup = function(event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -104,15 +99,7 @@ function restart() {
           "#wrong-guesses"
         ).innerHTML = incorrectGuesses.join(", ");
       }
-      if (lives == 0) {
-        losses++;
-        document.querySelector("#losses").innerHTML = losses;
-        restart();
-      }
-
-      if (!wordToGuess.includes("_")) {
-        wins++;
-        document.querySelector("#wins").innerHTML = wins;
+      if (lives == 0 || !wordToGuess.includes("_")) {
         restart();
       }
     }
